@@ -1,3 +1,11 @@
+kind: ConfigMap # We need to provide mysql host to backend to connect
+apiVersion: v1
+metadata:
+  name: backend
+  project: expense
+data:
+  DB_HOST: mysql
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
