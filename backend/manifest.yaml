@@ -28,7 +28,7 @@ spec:
         app: backend
         tier: api
         project: expense
-    spect:
+    spec:
       containers:
       - name: backend
         image: chaitanyaj293/backend:v1
