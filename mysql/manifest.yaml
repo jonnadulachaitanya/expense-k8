@@ -32,10 +32,9 @@ metadata:
   namespace: expense
 spec:
   selector:
-    labels:
-      app: mysql
-      tier: db
-      project: expense
+    app: mysql
+    tier: db
+    project: expense
   ports:
   - name: mysql-port
     protocol: TCP
