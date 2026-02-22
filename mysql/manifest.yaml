@@ -9,7 +9,7 @@ metadata:
     project: expense
 spec:
   replicas: 1
-  matchLabels:
+  matchlabels:
     app: mysql
     tier: db
     project: expense
@@ -27,7 +27,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  matchLabels:
+  matchlabels:
     app: mysql
     namespace: expense
 spec:
