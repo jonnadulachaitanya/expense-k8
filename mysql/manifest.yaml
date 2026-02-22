@@ -8,12 +8,11 @@ metadata:
     tier: db
     project: expense
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: mysql
-      tier: db
-      project: expense
+  replicas: 1
+  matchLabels:
+    app: mysql
+    tier: db
+    project: expense
   template:
     metadata:
       labels:
@@ -25,18 +24,19 @@ spec:
       - name: mysql
         image: chaitanyaj293/mysql:v1
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: mysql
-  namespace: expense
+  matchLabels:
+    app: mysql
+    namespace: expense
 spec:
   selector:
     app: mysql
     tier: db
     project: expense
   ports:
-  - name: mysql-port
+  - name: mysql-svc-port
     protocol: TCP
     port: 3306
     targetPort: 3306
