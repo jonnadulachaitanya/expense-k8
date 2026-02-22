@@ -28,9 +28,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  matchlabels:
-    app: mysql
-    namespace: expense
+  name: mysql
+  namespace: expense
 spec:
   selector:
     app: mysql
