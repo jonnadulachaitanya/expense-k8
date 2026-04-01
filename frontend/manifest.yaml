@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: frontend
+  namespace: expense
 data:
   nginx.conf: | # | represents multi line file
     user nginx;
@@ -64,6 +65,10 @@ data:
                 proxy_set_header X-Forwarded-Proto $scheme;
 
                 proxy_pass http://backend:8080/;
+            }
+                    # 🔥 ADD THIS
+            location /test {
+                return 200 "Nginx ConfigMap Working 🚀\n";
             }
 
             error_page 404 /404.html;
