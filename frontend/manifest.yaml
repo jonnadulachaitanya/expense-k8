@@ -66,7 +66,7 @@ data:
 
                 proxy_pass http://backend:8080/;
             }
-                    # 🔥 ADD THIS
+                    # To test if config changes working or not
             location /test {
                 return 200 "Nginx ConfigMap Working 🚀\n";
             }
@@ -142,7 +142,7 @@ metadata:
   name: frontend
   namespace: expense
 spec:
-  type: LoadBalancer
+  #type: LoadBalancer
   selector:
     app: frontend
     tier: web
@@ -166,3 +166,15 @@ spec:
  minReplicas: 1
  maxReplicas: 10
  targetCPUUtilizationPercentage: 15 # usually 75 in real environment
+---
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: frontend
+  namespace: expense
+spec:
+  serviceRef:
+    name: frontend # route traffic to the awesome-service
+    port: 80
+  targetGroupARN: arn:aws:elasticloadbalancing:us-east-1:596059882666:targetgroup/expense-development/e885ae616d71dfca
+  targetType: ip
